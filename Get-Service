@@ -1,0 +1,13 @@
+Get-Service | Select-Object -Property Name,
+DisplayName,
+ServiceName,
+Status,
+StartType,
+@{Name= 'ServicesDependedOn'; Expression= {$_.ServicesDependedOn -join ','}},
+@{Name= 'RequiredServices'; Expression= {$_.RequiredServices -join ','}},
+CanPauseAndContinue,
+CanShutdown,
+CanStop,
+ServiceType,
+Site,
+Container
