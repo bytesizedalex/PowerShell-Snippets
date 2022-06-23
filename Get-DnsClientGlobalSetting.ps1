@@ -1,0 +1,13 @@
+Get-DnsClientGlobalSetting | Select-Object -Property Caption,
+Description,
+ElementName,
+InstanceID,
+AddressOrigin,
+ProtocolIFType,
+AppendParentSuffixes,
+AppendPrimarySuffixes,
+@{Name= 'DNSSuffixesToAppend'; Expression= {$_.DNSSuffixesToAppend -join "'"}},
+DevolutionLevel,
+@{Name= 'SuffixSearchList'; Expression= {$_.SuffixSearchList -join ','}},
+UseDevolution,
+UseSuffixSearchList
