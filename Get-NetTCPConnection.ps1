@@ -1,0 +1,11 @@
+Get-NetTCPConnection | Select-Object -Property CreationTime,
+    LocalAddress,
+    LocalPort,
+    RemoteAddress,
+    RemotePort,
+    State,
+    OffloadState,
+    AppliedSetting,
+    OwningProcess,
+    @{Name= 'OwningProcessName'; Expression= {(Get-Process -Id ($_.OwningProcess)).ProcessName}},
+    @{Name= 'OwningService'; Expression= {(Get-CimInstance 'Win32_service' -Filter ("ProcessID = $($_.OwningProcess)")).Name}}
